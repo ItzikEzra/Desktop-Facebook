@@ -29,18 +29,22 @@ namespace Desktop_Facebook
             {
                 this.m_FacebookManager.Login();
                 this.m_LoginLogoutBtn.Text = "Logout";
-               //get detailes 
                 this.fetchUserInfo();
             }
             else
             {
                 this.m_FacebookManager.Logout();
-               //clean the screen
+                cleanUi();
                 this.m_LoginLogoutBtn.Text = "Login";
             }
         }
 
-    
+        private void cleanUi()
+        {
+
+            this.labelProfileName.Text = "name";
+        }
+
         private void fetchUserInfo()
         {
             try
@@ -55,39 +59,6 @@ namespace Desktop_Facebook
                 MessageBox.Show(ex.Message);
             }
         }
-        #region
-        private void labelProfileName_Click(object sender, EventArgs e)
-        {
-        }
-
-
-        private void FormFacebook_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelProfileName_Click_1(object sender, EventArgs e)
-        {
-
-        }
-        private void m_ProfilePicMain_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
+      
     }
 }

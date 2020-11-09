@@ -33,10 +33,7 @@ namespace Desktop_Facebook
             this.LoginResult = null;
         }
 
-        public void Connect()
-        {
-            this.LoggedInUser = LoginResult.LoggedInUser;
-        }
+     
    
      
 
