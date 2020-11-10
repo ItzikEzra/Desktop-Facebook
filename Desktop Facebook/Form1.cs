@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FacebookWrapper.ObjectModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -47,8 +48,8 @@ namespace Desktop_Facebook
         {//fill all data we fetch with permissions
             try
             {
-                this.m_ProfilePicMain.LoadAsync(this.m_FacebookManager.LoggedInUser.PictureNormalURL);
-                this.labelProfileName.Text = this.m_FacebookManager.LoggedInUser.Name.ToString();
+                this.m_ProfilePicMain.LoadAsync(this.m_FacebookManager.m_LoggedInUser.PictureNormalURL);
+                this.labelProfileName.Text = this.m_FacebookManager.m_LoggedInUser.Name.ToString();
                 //this.labelBirthday.Text = this.m_FacebookManager.LoggedInUser.Birthday.ToString();
                 //this.labelGender.Text = this.m_FacebookManager.LoggedInUser.Gender();
             }
@@ -58,6 +59,29 @@ namespace Desktop_Facebook
             }
         }
 
+        //private List<User> fetchUserFriends()
+        //{
+        //   return(List<User> fetchUserFriends =
+        //        m_FacebookManager.LoggedInUser.FriendLists());
+        //}
+        private void sortByGender()
+        {
+            //  List<string> friends = m_FacebookManager.LoggedInUser.Friends.ToString();
+            List<string> friends = this.m_FacebookManager.FetchUserFriends();
+            m_FacebookManager.m_LoggedInUser.Email.ToString();
+            m_FacebookManager.m_LoggedInUser.Gender.ToString();
+            m_FacebookManager.m_LoggedInUser.About.ToString();
+            m_FacebookManager.m_LoggedInUser.Albums.ToString();
+            m_FacebookManager.m_LoggedInUser.Birthday.ToString();
+            m_FacebookManager.m_LoggedInUser.Checkins.ToString();
+            m_FacebookManager.m_LoggedInUser.FavofriteTeams.ToString();
+            m_FacebookManager.m_LoggedInUser.Groups.ToString();
+            m_FacebookManager.m_LoggedInUser.Hometown.ToString();
+            m_FacebookManager.m_LoggedInUser.Posts.ToString();
+            m_FacebookManager.m_LoggedInUser.LikedPages.ToString();
+
+
+        }
        
     }
 }

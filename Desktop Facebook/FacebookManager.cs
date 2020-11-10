@@ -14,26 +14,35 @@ namespace Desktop_Facebook
 
         }
 
-        public User LoggedInUser { get; set; }
+        public User m_LoggedInUser { get; set; }
 
-        public LoginResult LoginResult { get; set; }
+        public LoginResult m_LoginResult { get; set; }
 
         public void Login()
         {
-            LoginResult = FacebookService.Login(
+            m_LoginResult = FacebookService.Login(
                 "2842375502752590",
                 "public_profile");
 
-            this.LoggedInUser = this.LoginResult.LoggedInUser;
+            this.m_LoggedInUser = this.m_LoginResult.LoggedInUser;
         }
         public void Logout()
         {
             FacebookService.Logout(null);
-            this.LoggedInUser = null;
-            this.LoginResult = null;
+            this.m_LoggedInUser = null;
+            this.m_LoginResult = null;
         }
 
-     
+      internal List<string> FetchUserFriends()
+        {
+            List<string> friendsList = new List<string>();
+            foreach (User friend in this.m_LoggedInUser.Friends)
+            {
+                friendsList.Add(friend.Name);
+            }
+
+            return friendsList;
+        }
    
      
 
