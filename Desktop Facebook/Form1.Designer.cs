@@ -36,16 +36,25 @@
             this.labelBirthday = new System.Windows.Forms.Label();
             this.labelGender = new System.Windows.Forms.Label();
             this.RememberMe = new System.Windows.Forms.CheckBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.m_ProfilePicMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_ProfilePicMain
             // 
-            this.m_ProfilePicMain.Location = new System.Drawing.Point(3, 13);
+            this.m_ProfilePicMain.Location = new System.Drawing.Point(2, 46);
             this.m_ProfilePicMain.Margin = new System.Windows.Forms.Padding(4);
             this.m_ProfilePicMain.Name = "m_ProfilePicMain";
-            this.m_ProfilePicMain.Size = new System.Drawing.Size(240, 193);
+            this.m_ProfilePicMain.Size = new System.Drawing.Size(202, 168);
             this.m_ProfilePicMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.m_ProfilePicMain.TabIndex = 3;
             this.m_ProfilePicMain.TabStop = false;
@@ -54,10 +63,10 @@
             // 
             this.m_LoginLogoutBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.m_LoginLogoutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.m_LoginLogoutBtn.Location = new System.Drawing.Point(2, 222);
+            this.m_LoginLogoutBtn.Location = new System.Drawing.Point(2, 224);
             this.m_LoginLogoutBtn.Margin = new System.Windows.Forms.Padding(4);
             this.m_LoginLogoutBtn.Name = "m_LoginLogoutBtn";
-            this.m_LoginLogoutBtn.Size = new System.Drawing.Size(240, 55);
+            this.m_LoginLogoutBtn.Size = new System.Drawing.Size(202, 53);
             this.m_LoginLogoutBtn.TabIndex = 4;
             this.m_LoginLogoutBtn.Text = "Login";
             this.m_LoginLogoutBtn.UseVisualStyleBackColor = false;
@@ -116,11 +125,91 @@
             this.RememberMe.Text = "Remember Me";
             this.RememberMe.UseVisualStyleBackColor = true;
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(464, 29);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(167, 340);
+            this.listBox1.TabIndex = 19;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 16;
+            this.listBox2.Location = new System.Drawing.Point(274, 29);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(167, 340);
+            this.listBox2.TabIndex = 20;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.listBox3);
+            this.panel1.Controls.Add(this.listBox2);
+            this.panel1.Controls.Add(this.listBox1);
+            this.panel1.Location = new System.Drawing.Point(305, 63);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(648, 373);
+            this.panel1.TabIndex = 21;
+            this.panel1.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(129, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 17);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Friends";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(325, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 17);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Checkins";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(516, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 17);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Albums";
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 16;
+            this.listBox3.Location = new System.Drawing.Point(79, 29);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(167, 340);
+            this.listBox3.TabIndex = 22;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(2, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 35);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "get  panel";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormFacebook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 446);
+            this.ClientSize = new System.Drawing.Size(1015, 463);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.RememberMe);
             this.Controls.Add(this.labelGender);
             this.Controls.Add(this.labelBirthday);
@@ -129,9 +218,12 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.m_ProfilePicMain);
             this.Name = "FormFacebook";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "FormFaceook";
             ((System.ComponentModel.ISupportInitialize)(this.m_ProfilePicMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,6 +238,14 @@
         private System.Windows.Forms.Label labelBirthday;
         private System.Windows.Forms.Label labelGender;
         private System.Windows.Forms.CheckBox RememberMe;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

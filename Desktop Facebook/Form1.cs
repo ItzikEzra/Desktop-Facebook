@@ -13,45 +13,63 @@ namespace Desktop_Facebook
 {
     public partial class FormFacebook : Form
     {
-        private FacebookManager m_FacebookManager;
+        private readonly FacebookManager m_FacebookManager;
 
         public FormFacebook()
         {
             InitializeComponent();
-            this.m_FacebookManager = new FacebookManager();
+            m_FacebookManager = new FacebookManager();
 
         }
 
         private void m_LoginLogoutBtn_Click(object sender, EventArgs e)
         {
-            if (this.m_LoginLogoutBtn.Text == "Login")
+            if (m_LoginLogoutBtn.Text == "Login")
             {
-                this.m_FacebookManager.Login();
-                this.m_LoginLogoutBtn.Text = "Logout";
-                this.fetchUserInfo();
+                m_FacebookManager.Login();
+                m_LoginLogoutBtn.Text = "Logout";
+                fetcUserInfo();
+               
             }
             else
             {
-                this.m_FacebookManager.Logout();
-                cleanUi();
-                this.m_LoginLogoutBtn.Text = "Login";
+                disconnect();
             }
         }
 
-        private void cleanUi()
+        private void disconnect()
         {
-            this.labelProfileName.Text = "ProfileName";
-            //Clean app
+            m_FacebookManager.Logout();
+            cleanUI();
         }
 
-        private void fetchUserInfo()
+        private void cleanUI()
+        //Clean app
+        {
+            m_ProfilePicMain.Visible = false;
+            m_LoginLogoutBtn.Text = "Login";
+            labelProfileName.Text = "ProfileName";
+            labelBirthday.Text = "Birthday";
+            labelGender.Text = "Gender";
+        }
+
+        private void fetcUserInfo()
+        {
+            fetcPerofileInfo();
+            fetchUserAlbums();
+            fetchUserCheckin();
+            FetchUserFriends();
+            fetchPosts();
+        }
+        private void fetcPerofileInfo()
         {//fill all data we fetch with permissions
             try
             {
-                this.m_ProfilePicMain.LoadAsync(this.m_FacebookManager.m_LoggedInUser.PictureNormalURL);
-                this.labelProfileName.Text = this.m_FacebookManager.m_LoggedInUser.Name.ToString();
-                //this.labelBirthday.Text = this.m_FacebookManager.LoggedInUser.Birthday.ToString();
-                //this.labelGender.Text = this.m_FacebookManager.LoggedInUser.Gender();
+               
+                labelProfileName.Text = m_FacebookManager.m_LoggedInUser.Name.ToString();
+                m_ProfilePicMain.LoadAsync(m_FacebookManager.m_LoggedInUser.PictureNormalURL);
+                labelBirthday.Text = m_FacebookManager.m_LoggedInUser.Birthday.ToString();
+                labelGender.Text = m_FacebookManager.m_LoggedInUser.Gender.ToString();
             }
             catch (Exception ex)
             {
@@ -59,15 +77,55 @@ namespace Desktop_Facebook
             }
         }
 
-        //private List<User> fetchUserFriends()
-        //{
-        //   return(List<User> fetchUserFriends =
-        //        m_FacebookManager.LoggedInUser.FriendLists());
-        //}
-        private void sortByGender()
+        private void fetchUserAlbums()
         {
-            //  List<string> friends = m_FacebookManager.LoggedInUser.Friends.ToString();
-            List<string> friends = this.m_FacebookManager.FetchUserFriends();
+            //פונקציה שמוספיה אלבומים לליסט בוקס
+
+            foreach (Album album in m_FacebookManager.m_LoggedInUser.Albums)
+            {
+                listBox1.Items.Add(album.Name);
+                
+            }
+        }
+
+        private void fetchUserCheckin()
+        {
+            //פונקציה שמוספיה צק אינס לליסט בוקס
+            foreach (Checkin check in m_FacebookManager.m_LoggedInUser.Checkins)
+            {
+                listBox2.Items.Add(check.Place.Name);
+            }
+        }
+        private List<string> FetchUserFriends()
+        {// פונקציה שעוברת על רשימת החברים ומוסיפה לרשימה ולליסט בוקס
+            List<string> friendsList = new List<string>();
+            foreach (User friend in m_FacebookManager.m_LoggedInUser.Friends)
+            {
+                friendsList.Add(friend.Name);
+                listBox2.Items.Add(friend.Friends);
+
+            }
+
+            return friendsList;
+        }
+    
+        private void fetchPosts()
+        {//פונקציה שעוברת על כל הפוסטים מוביפה לרשימה ולליסט בוקס 
+            int counter = 0;
+            List<string> postList = new List<string>();
+            foreach (Post user in m_FacebookManager.m_LoggedInUser.Posts)
+            {
+                listBox3.Items.Add(user.CreatedTime);
+                listBox3.Items.Add(user.Comments);
+                postList.Add(user.Caption);
+                counter++;
+            }
+            listBox3.Items.Add(counter);
+        }
+
+
+        private void sortByGender()
+        {//רשימה של ההרשאות שאפשר לשחק איתם
             m_FacebookManager.m_LoggedInUser.Email.ToString();
             m_FacebookManager.m_LoggedInUser.Gender.ToString();
             m_FacebookManager.m_LoggedInUser.About.ToString();
@@ -82,6 +140,13 @@ namespace Desktop_Facebook
 
 
         }
-       
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = !panel1.Visible;
+        }
+
+        
+      
     }
 }
