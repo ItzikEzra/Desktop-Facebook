@@ -5,40 +5,65 @@ using System.Text;
 using System.Threading.Tasks;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
+
 namespace Desktop_Facebook
 {
-    public class FacebookManager
+    public sealed class FacebookManager
     {
-        public FacebookManager()
-        {
+        private static FacebookManager s_Instance = null;
+        private static readonly object sr_Padlock = new object();
 
+        private FacebookManager()
+        {
         }
 
-        public User LoggedInUser { get; set; }
+        public static FacebookManager Instance
+        {
+            get
+            {
+                lock (sr_Padlock)
+                {
+                    if (s_Instance == null)
+                    {
+                        s_Instance = new FacebookManager();
+                    }
+                    return s_Instance;
+                }
+            }
+        }
+        public User m_LoggedInUser { get; set; }
 
-        public LoginResult LoginResult { get; set; }
+        public LoginResult m_LoginResult { get; set; }
 
         public void Login()
         {
-            LoginResult = FacebookService.Login(
-                "2842375502752590",
-                "public_profile");
+            m_LoginResult = FacebookService.Login("396203801511633",
+              "user_birthday",
+              "user_hometown",
+              "user_location",
+              "user_likes",
+              "user_events",
+              "user_photos",
+              "user_videos",
+              "user_friends",
+              "user_status",
+              "user_tagged_places",
+              "user_posts",
+              "user_gender",
+              "user_link",
+              "user_age_range",
+              "email",
+              "user_managed_groups",
+              "pages_show_list",
+              "public_profile");
 
-            this.LoggedInUser = this.LoginResult.LoggedInUser;
+            m_LoggedInUser = m_LoginResult.LoggedInUser;
         }
         public void Logout()
         {
             FacebookService.Logout(null);
-            this.LoggedInUser = null;
-            this.LoginResult = null;
+            m_LoggedInUser = null;
+            m_LoginResult = null;
         }
-
-        public void Connect()
-        {
-            this.LoggedInUser = LoginResult.LoggedInUser;
-        }
-   
-     
-
     }
 }
